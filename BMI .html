@@ -1,0 +1,93 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>BMI Calculator</title>
+    <style>
+        .container {
+    width: 375px;
+    height: 525px;
+    margin: auto;
+   
+    margin-top: 65px;
+    background-color: yellow;
+    padding-left: 30px;
+}
+#height, #weight {
+    width: 150px;
+    height: 25px;
+    margin-top: 30px;
+}
+
+
+#results{
+    font-size: 35px;
+    margin-left: 90px;
+    margin-top: 20px;
+    color: blue;
+}
+
+button{
+    width: 150px;
+    height: auto;
+    margin-left: 90px;
+    margin-top: 25px;
+    border-radius: 5px;
+    border-style: none;
+    background-color: blue;
+    color: #fff;
+    font-size: 20px;
+}
+
+h1{
+    margin: auto;
+    text-align: center;
+    padding-top: 25px;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+    <h1>Check your BMI</h1>
+    <p>Enter your weight and height below to check your BMI result</p>
+    <form>
+    <p><label>weight in KG: </label><input type="text" id="weight"></p>
+    <p><label>height in CM: </label><input type="text" id="height"></p>
+    <button>Calculate BMI</button>
+    <div id="results"></div>
+    
+   
+    <p>Your BMI is 83.3 which means You are Obese</p>
+    
+    </div>
+    </form>
+    </div>
+</body>
+<script src="script.js"></script>
+</html>
+<script>
+    let form = document.querySelector('form');
+
+    form.addEventListener('submit', function(e){
+    e.preventDefault();
+    
+    let height = parseInt(document.querySelector('#height').value);
+    let weight = parseInt(document.querySelector('#weight').value);
+    let results = document.querySelector('#results');
+    
+    if((height == '') || (height < 0) || (isNaN(height))){
+        //NaN !== NaN
+        results.innerHTML = "Please provide a valid height";
+        
+    } else if (weight === '' || weight < 0 || isNaN(weight)){
+        results.innerHTML = "Please provide a valid weight";
+    } else {
+    //calculate BMI
+    let bmi = (weight / ((height*height)/10000)).toFixed(2);
+    //display the results
+    results.innerHTML = `<span>${bmi}</span>`
+    }  
+});
+</script>
